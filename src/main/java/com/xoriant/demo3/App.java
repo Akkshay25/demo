@@ -12,6 +12,9 @@ public class App
     	System.out.println("test");
  	System.out.println("test2");
  	System.out.println("test3");
+ 
+ String ptr = null;
+ if (ptr.equals("gfg")) {}
     	
   }
 }
