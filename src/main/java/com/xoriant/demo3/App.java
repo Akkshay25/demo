@@ -14,7 +14,7 @@ public class App
  	System.out.println("test3");
  
  String ptr = null;
- if (ptr.equals("gfg")) {}
+ if (ptr.equals("gfg")) {System.out.println("testing git pull");}
     	
   }
 }
