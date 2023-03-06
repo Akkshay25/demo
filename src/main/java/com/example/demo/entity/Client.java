@@ -1,47 +1,30 @@
 package com.example.demo.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDate;
 import java.util.Objects;
-
+@Data
 @Entity
-public class Client {
+@NoArgsConstructor
+public class  Client {
 
   private @Id @GeneratedValue Long cId;
   private String name;
   private String pan;
+  private LocalDate onboardingDate;
+  private LocalDate followUpDate;
 
-  Client() {}
-
-  Client(String name, String pan) {
+  Client(String name, String pan, LocalDate onboardingDate, LocalDate followUpDate) {
 
     this.name = name;
     this.pan = pan;
-  }
-
-  public Long getCId() {
-    return cId;
-  }
-
-  public void setCId(Long cId) {
-    this.cId = cId;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getPan() {
-    return pan;
-  }
-
-  public void setPan(String pan) {
-    this.pan = pan;
+    this.onboardingDate = onboardingDate;
+    this.followUpDate = followUpDate;
   }
 
   @Override
