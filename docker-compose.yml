@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  mysql:
+    container_name: mysql_db
+    restart: always
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_USER: 'user'
+      MYSQL_PASS: 'pass'
+      MYSQL_DATABASE: 'finak'
+    volumes:
+      - my-datavolume:/var/lib/mysql
+    ports:
+      - "3306:3306"
+  backend:
+    depends_on:
+      - mysql
+    build: ./demo
+    container_name: backend
+    restart: always
+    image: backend:latest
+    environment:
+      SPRING_APPLICATION_JSON: '{
+        "spring.datasource.url"  : "jdbc:mysql://mysql:3306/finak?allowPublicKeyRetrieval=true&useSSL=false",
+        "spring.datasource.username" : "root",
+        "spring.datasource.password" : "password",
+        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
+        "spring.jpa.hibernate.ddl-auto" : "update"
+      }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
+volumes:
+  my-datavolume:
