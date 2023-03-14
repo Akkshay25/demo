@@ -16,7 +16,7 @@ services:
   backend:
     depends_on:
       - mysql
-    build: ./demo
+    build: .
     container_name: backend
     restart: always
     image: backend:latest
