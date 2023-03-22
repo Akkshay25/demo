@@ -47,6 +47,9 @@ public class ClientService {
 		return repository.findById(id).map(Client -> {
 			Client.setName(newClient.getName());
 			Client.setPan(newClient.getPan());
+			Client.setCId(id);
+			Client.setFollowUpDate(newClient.getFollowUpDate());
+			Client.setOnboardingDate(newClient.getOnboardingDate());
 			return repository.save(Client);
 		}).orElseGet(() -> {
 			newClient.setCId(id);
