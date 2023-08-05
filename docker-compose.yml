@@ -35,14 +35,15 @@ services:
     ports:
       - "8080:8080"
   ui:
-    build: ./prosperity
-    command: sh -c "npm start"
     ports:
-      - 4200:4200
-    working_dir: /home/node/app
-    volumes:
-      - ./:/home/node/app
-      - node_modules:/home/node/app/node_modules
+      - "4200:4200/tcp"
+    restart: always
+    environment:
+      - BACKEND_API_URL=http://backend:8080/api/v1
+      - TZ=Asia/Kolkata
+    container_name: ui
+    build: ./prosperity
+    depends_on:
+      - backend
 volumes:
   my-datavolume:
-  node_modules:
